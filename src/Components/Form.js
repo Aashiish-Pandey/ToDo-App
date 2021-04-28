@@ -1,10 +1,15 @@
 import React from 'react'
 
-const Form = ()=> {
+const Form = ({setUserInput})=> {
+
+    const inputTextHandler = (e)=> {
+
+        setUserInput(e.target.value)
+    }
 
     return(
         <form>
-      <input type="text" className="todo-input" />
+      <input type="text" onChange={inputTextHandler} className="todo-input" />
       <button className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
       </button>
