@@ -1,18 +1,29 @@
-import React from 'react'
+import React from "react";
 
-const Form = ({setUserInput})=> {
+const Form = ({ setUserInput,toDos,setToDos,inputText}) => {
+  const inputTextHandler = (e) => {
+    setUserInput(e.target.value);
+  };
 
-    const inputTextHandler = (e)=> {
+  const submitToDoHandler = (e) => {
 
-        setUserInput(e.target.value)
-    }
+    e.preventDefault()
+    setToDos([
 
-    return(
-        <form>
+      ...toDos,
+      {text:inputText, completed:false,id:Math.random()*1000}
+    ])
+    setUserInput(" ")
+  };
+
+  return (
+    <form>
+
       <input type="text" onChange={inputTextHandler} className="todo-input" />
-      <button className="todo-button" type="submit">
+      <button className="todo-button" type="submit" onClick ={submitToDoHandler}>
         <i className="fas fa-plus-square"></i>
       </button>
+
       <div className="select">
         <select name="todos" className="filter-todo">
           <option value="all">All</option>
@@ -21,7 +32,7 @@ const Form = ({setUserInput})=> {
         </select>
       </div>
     </form>
-    )
-}
+  );
+};
 
 export default Form;
